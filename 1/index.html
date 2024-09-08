@@ -34,8 +34,13 @@
             justify-content: space-between;
             gap: 100px; /* Add space between the images */
         }
-        .image-row img {
+        figure {
             flex: 1;
+            text-align: center; /* Center the title below the image */
+        }
+        figcaption {
+            margin-top: 10px;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -57,11 +62,20 @@
         <div class="content">
             <h2>Results</h2>
             <div class="image-row">
-                <img src="media/cathedral.jpg" alt="Image 1">
-                <img src="media/monastery.jpg" alt="Image 2">
-                <img src="media/tobolsk.jpg" alt="Image 3">
+                <figure>
+                    <img src="media/cathedral.jpg" alt="Image 1">
+                    <figcaption>cathedral.jpg</figcaption>
+                </figure>
+                <figure>
+                    <img src="media/monastery.jpg" alt="Image 2">
+                    <figcaption>monastery.jpg</figcaption>
+                </figure>
+                <figure>
+                    <img src="media/tobolsk.jpg" alt="Image 3">
+                    <figcaption>tobolsk.jpg</figcaption>
+                </figure>       
             </div>
-            <p>These are three images displayed in a row.</p>
+            <p>Naive alignment applied on 3 small images</p>
         </div>
     </section>
 
