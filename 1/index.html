@@ -29,6 +29,11 @@
             max-width: 1200px;
             margin: 0 auto;
         }
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 images per row */
+            gap: 20px; /* Space between images */
+        }
         .image-row {
             display: flex;
             justify-content: space-between;
@@ -41,6 +46,11 @@
         figcaption {
             margin-top: 10px;
             font-weight: bold;
+        }
+        .description {
+            margin-top: 5px;
+            font-weight: normal;
+            color: #555; /* Style for description text */
         }
     </style>
 </head>
@@ -61,21 +71,55 @@
     <section>
         <div class="content">
             <h2>Results</h2>
-            <div class="image-row">
+            <div class="image-grid">
                 <figure>
-                    <img src="media/cathedral.jpg" alt="Image 1">
-                    <figcaption>cathedral.jpg</figcaption>
+                    <img src="media/church.jpg" alt="Image 1">
+                    <figcaption>
+                        church.jpg
+                        <p class="description">This is the description for Image 1.</p>
+                    </figcaption>
                 </figure>
                 <figure>
-                    <img src="media/monastery.jpg" alt="Image 2">
-                    <figcaption>monastery.jpg</figcaption>
+                    <img src="https://via.placeholder.com/400x300" alt="Image 2">
+                    <figcaption>Image 2</figcaption>
                 </figure>
                 <figure>
-                    <img src="media/tobolsk.jpg" alt="Image 3">
-                    <figcaption>tobolsk.jpg</figcaption>
-                </figure>       
+                    <img src="https://via.placeholder.com/400x300" alt="Image 3">
+                    <figcaption>Image 3</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://via.placeholder.com/400x300" alt="Image 4">
+                    <figcaption>Image 4</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://via.placeholder.com/400x300" alt="Image 5">
+                    <figcaption>Image 5</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://via.placeholder.com/400x300" alt="Image 6">
+                    <figcaption>Image 6</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://via.placeholder.com/400x300" alt="Image 7">
+                    <figcaption>Image 7</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://via.placeholder.com/400x300" alt="Image 8">
+                    <figcaption>Image 8</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://via.placeholder.com/400x300" alt="Image 9">
+                    <figcaption>Image 9</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://via.placeholder.com/400x300" alt="Image 10">
+                    <figcaption>Image 10</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://via.placeholder.com/400x300" alt="Image 11">
+                    <figcaption>Image 11</figcaption>
+                </figure>
             </div>
-            <p>Naive alignment applied on 3 small images</p>
         </div>
     </section>
 
