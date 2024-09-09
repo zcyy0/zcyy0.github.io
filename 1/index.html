@@ -132,8 +132,12 @@
                 The simple alignment algorithm works well for smaller images, but it is very inefficient for larger images. For the large size images, I used image pyramid 
                 alignment algorithm. The high level idea is to shrink the large .tif images into small images, and iteratively enlarge the small images and find the best
                 displacement vectors on larger images. The details is the following:
-                1.  Denote the height and the weight of the original image as H and W. Calculate the resize factor as i = log2(min(H, W)/100). Resize the red/green plate and
-                blue plate with height = H/i and width = W/i
+                Denote the height and the weight of the original image as H and W. Calculate the resize factor as n = log2(min(H, W)/100). Resize the red/green plate and
+                blue plate with height = H/n and width = W/n, and denote the small red/green plate as s_0, and the small blue plate as t_0. 
+                for i = 0 to n:
+                    compute the best alignment displacement vector d_i = align(s_i, t_i, d_{i-1})
+                    scale up s_i and t_i by a factor of 2
+                At the end of the algorithm, I obtained the best displacement vector for the images of the original size. 
             </p>
         </div>
     </section>
