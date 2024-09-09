@@ -80,34 +80,42 @@
     </section>
     <section>
         <div class="content">
-            <h2>Naive Alignment</h2>
-            <p>This is a short paragraph about myself. I love learning new things, exploring web development, and working on interesting projects!</p>
+            <h2>Simple Alignment</h2>
+            <p>For smaller images, I used a simple algorithm of exhaustively searching over a window of possible displacements in both X axis and Y axis directions. The
+                range of the search window is [-15, 15] pixels. I used Euclidean Distance as the metric for evaluating the alignment between two images. The Euclidean Distance 
+                between two image matrices A and B is computed as sqrt(sum((A-B)^2)). Before performing the alignment, I also removed the borders of the images. Denote the height
+                and width of an image by H and W, I removed 0.05H on top and the bottom of the image, and 0.05W on the left and the right side of the image.
+            </p>
 
         </div>
     </section>
     <section>
         <div class="content">
             <h2>Results</h2>
+            <p>
+                The simple alignment algorithm works well on the three smaller images. The results are shown as below with the displacement vectors (dx, dy) for the 
+                red and green plates 
+            </p>
             <div class="image-grid">
                 <figure>
                     <img src="media/cathedral.jpg" alt="Image 1">
                     <figcaption>
                         cathedral.jpg
-                        <p class="description">This is the description for Image 1.</p>
+                        <p class="description">red:(3, 12), green:(2, 5)</p>
                     </figcaption>
                 </figure>
                 <figure>
                     <img src="media/monastery.jpg" alt="Image 2">
                     <figcaption>
-                        Image 2
-                        <p class="description">This is the description for Image 1.</p>
+                        monastery.jpg
+                        <p class="description">red:(2, 3), green:(2, -3)</p>
                     </figcaption>
                 </figure>
                 <figure>
                     <img src="media/tobolsk.jpg" alt="Image 3">
                     <figcaption>
-                        Image 3
-                        <p class="description">This is the description for Image 1.</p>
+                        tobolsk.jpg
+                        <p class="description">red:(3, 6), green:(3, 3)</p>
                     </figcaption>
                 </figure>               
             </div>
