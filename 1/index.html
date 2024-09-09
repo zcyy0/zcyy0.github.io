@@ -135,8 +135,8 @@
                 Denote the height and the weight of the original image as H and W. Calculate the resize factor as n = log2(min(H, W)/100). Resize the red/green plate and
                 blue plate with height = H/n and width = W/n, and denote the small red/green plate as s_0, and the small blue plate as t_0. <br>
                 for i = 0 to n:<br>
-                    compute the best alignment displacement vector d_i = align(s_i, t_i, d_{i-1})<br>
-                    scale up s_i and t_i by a factor of 2<br>
+                    <li> compute the best alignment displacement vector d_i = align(s_i, t_i, d_{i-1}) </li>
+                    <li> scale up s_i and t_i by a factor of 2</li>
                 While the images are getting larger in each iteration, shrink the seach window of displacement. I use (-15, 15) for the smallest imagest, and (-3, 3) for all
                 the other biggest images. <br>
                 At the end of the algorithm, I obtained the best displacement vector for the images of the original size. <br>
@@ -234,7 +234,9 @@
     <section>
         <div class="content">
             <h2>Bells and Whistles</h2>
-            <p>This is a short paragraph about myself. I love learning new things, exploring web development, and working on interesting projects!</p>
+            <p>In the results above, emir.jpg is not aligned properly. This is probably due to that the pixels on the same locations have very different intensity values on red, green and blue 
+            plates. A possible solution is to use the edge feature for alignment instead of pixel values. I used Canny Edge detection algorithm, and this fixed the misalignment
+            problem. In the results below, the left image does not use Canny Edge detection, whereas the image on the right uses Canny Edge detection. </p>
         </div>
         <div class="content">
             <div class="image-grid">
