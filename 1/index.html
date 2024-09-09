@@ -12,6 +12,9 @@
             padding: 0;
             background-color: #f4f4f4;
         }
+        p {
+            line-height: 2.0; /* Adjust the line spacing here */
+        }
         header {
             background-color: #333;
             color: #fff;
@@ -125,7 +128,13 @@
     <section>
         <div class="content">
             <h2>Image Pyramid Alignment</h2>
-            <p>This is a short paragraph about myself. I love learning new things, exploring web development, and working on interesting projects!</p>
+            <p>
+                The simple alignment algorithm works well for smaller images, but it is very inefficient for larger images. For the large size images, I used image pyramid 
+                alignment algorithm. The high level idea is to shrink the large .tif images into small images, and iteratively enlarge the small images and find the best
+                displacement vectors on larger images. The details is the following:
+                1.  Denote the height and the weight of the original image as H and W. Calculate the resize factor as i = log2(min(H, W)/100). Resize the red/green plate and
+                blue plate with height = H/i and width = W/i
+            </p>
         </div>
     </section>
     <section>
