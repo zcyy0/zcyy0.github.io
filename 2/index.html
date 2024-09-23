@@ -109,21 +109,38 @@
     
     <section>
         <div class="content">
-            <h2>Image Pyramid Alignment</h2>
+            <h2>2.2 Derivative of Gaussian (DoG) Filter </h2>
             <p>
-                The simple alignment algorithm works well for smaller images, but it is very inefficient for larger images. For the large size images, I used image pyramid 
-                alignment algorithm. The high level idea is to shrink the large .tif images into small images, and iteratively enlarge the small images and find the best
-                displacement vectors on larger images. The details is the following:<br>
-                Denote the height and the weight of the original image as H and W. Calculate the resize factor as n = log2(min(H, W)/100). Resize the red/green plate and
-                blue plate with height = H/n and width = W/n. Denote the small red/green plate as s_0, and the small blue plate as t_0.
-                <pre><code>
-                    for i = 0 to n:<br>
-                          compute the best alignment displacement vector d_i = align(s_i, t_i, d_{i-1}) </li>
-                          scale up s_i and t_i by a factor of 2</li>
-                </code></pre>
-                As the images are getting larger in each iteration, shrink the seach window of displacement. I use (-15, 15) for the smallest imagest, and (-3, 3) for all
-                the other bigger images. At the end of the algorithm, I obtained the best displacement vector for the images of the original size. <br>
+                First, apply the Gaussian filter to the image to get a blurred image. Then apply the same Dx, Dy, gradient computation and binarization
+                as in the previous section. The resulting edge image looks smoother and better
+                better than the ones in the previous section. 
             </p>
+             <div class="image-grid">
+                <figure>
+                    <img src="media/img_blurred_dx.jpg" alt="Image 1">
+                    <figcaption>
+                        Image Blurred Dx
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="media/img_blurred_dy.jpg" alt="Image 2">
+                    <figcaption>
+                        Image Blurred Dy
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="media/im_blurred_grad.jpg" alt="Image 3">
+                    <figcaption>
+                        Image Blurred Gradient
+                    </figcaption>
+                </figure>   
+                <figure>
+                    <img src="media/img_blurred_grad_binarized.jpg" alt="Image 3">
+                    <figcaption>
+                        Image Blurred Gradient Binarized
+                    </figcaption>
+                </figure> 
+            </div>
         </div>
     </section>
     <section>
