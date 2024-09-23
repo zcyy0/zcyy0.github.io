@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CS180 Project 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        p {
+            line-height: 2.0; /* Adjust the line spacing here */
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        section {
+            padding: 20px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 images per row */
+            gap: 20px; /* Space between images */
+        }
+        .image-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px; /* Add space between the images */
+        }
+        figure {
+            flex: 1;
+            text-align: center; /* Center the title below the image */
+        }
+        figcaption {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .description {
+            margin-top: 5px;
+            font-weight: normal;
+            color: #555; /* Style for description text */
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>CS180 Project 2: Filters and Frequencies</h1>
+    </header>
+    <section>
+        <div class="content">
+            <h2>1.1 Finite Difference Operator</h2>
+            <p>
+              First, the cameraman image is convolved with Dx = [[1, -1]] and Dy = [[1], [-1]] respectively. Then, combine the Dx and Dy images by using 
+              np.sqrt(dx_deriv ** 2 + dy_deriv ** 2). Finally, binarized the image by setting the pixel value to 1 if it's above the threshold and 0 otherwise. 
+              
+            </p>
+        </div>
+    </section>
+    <section>
+        <div class="content">
+            <h2>Results</h2>
+            <div class="image-grid">
+                <figure>
+                    <img src="media/cathedral.jpg" alt="Image 1">
+                    <figcaption>
+                        cathedral.jpg
+                        <p class="description">red:(3, 12), green:(2, 5)</p>
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="media/monastery.jpg" alt="Image 2">
+                    <figcaption>
+                        monastery.jpg
+                        <p class="description">red:(2, 3), green:(2, -3)</p>
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="media/tobolsk.jpg" alt="Image 3">
+                    <figcaption>
+                        tobolsk.jpg
+                        <p class="description">red:(3, 6), green:(3, 3)</p>
+                    </figcaption>
+                </figure>               
+            </div>
+        </div>
+    </section>
+    
+    <section>
+        <div class="content">
+            <h2>Image Pyramid Alignment</h2>
+            <p>
+                The simple alignment algorithm works well for smaller images, but it is very inefficient for larger images. For the large size images, I used image pyramid 
+                alignment algorithm. The high level idea is to shrink the large .tif images into small images, and iteratively enlarge the small images and find the best
+                displacement vectors on larger images. The details is the following:<br>
+                Denote the height and the weight of the original image as H and W. Calculate the resize factor as n = log2(min(H, W)/100). Resize the red/green plate and
+                blue plate with height = H/n and width = W/n. Denote the small red/green plate as s_0, and the small blue plate as t_0.
+                <pre><code>
+                    for i = 0 to n:<br>
+                          compute the best alignment displacement vector d_i = align(s_i, t_i, d_{i-1}) </li>
+                          scale up s_i and t_i by a factor of 2</li>
+                </code></pre>
+                As the images are getting larger in each iteration, shrink the seach window of displacement. I use (-15, 15) for the smallest imagest, and (-3, 3) for all
+                the other bigger images. At the end of the algorithm, I obtained the best displacement vector for the images of the original size. <br>
+            </p>
+        </div>
+    </section>
+    <section>
+        <div class="content">
+            <h2>Results</h2>
+            <p>
+                The results are shown as below with the displacement vectors (dx, dy) for the red and green plates. For these .tif images, the runtime of image pyramid algorithm
+                is in the range of 15-20s.
+            </p>
+            <div class="image-grid">
+                <figure>
+                    <img src="media/church.jpg" alt="Image 1">
+                    <figcaption>
+                        church.jpg
+                        <p class="description">red:(-4, 59), green:(3, 25)</p>
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="media/emir.jpg" alt="Image 2">
+                    <figcaption>
+                        emir.jpg
+                        <p class="description">red:(44, 36), green:(24, 49)</p>
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="media/harvesters.jpg" alt="Image 3">
+                    <figcaption>
+                        harvesters.jpg
+                        <p class="description">red:(13, 123), green:(16, 59)</p>
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="media/icon.jpg" alt="Image 4">
+                    <figcaption>
+                        icon.jpg
+                        <p class="description">red:(23, 89), green:(17, 41)</p>
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="media/lady.jpg" alt="Image 5">
+                    <figcaption>
+                        lady.jpg
+                        <p class="description">red:(11, 116), green:(8, 56)</p>
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="media/melons.jpg" alt="Image 6">
+                    <figcaption>
+                        melons.jpg
+                        <p class="description">red:(12, 178), green:(9, 82)</p>
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="media/onion_church.jpg" alt="Image 7">
+                    <figcaption>
+                        onion_church.jpg
+                        <p class="description">red:(36, 108), green:(26, 51)</p>
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="media/sculpture.jpg" alt="Image 8">
+                    <figcaption>
+                        sculpture.jpg
+                        <p class="description">red:(-26, 139), green:(-11, 33)</p>
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="media/self_portrait.jpg" alt="Image 9">
+                    <figcaption>
+                        self_portrait.jpg
+                        <p class="description">red:(36, 176), green:(29, 79)</p>
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="media/three_generations.jpg" alt="Image 10">
+                    <figcaption>
+                        three_generations.jpg
+                        <p class="description">red:(10, 111), green:(13, 53)</p>
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="media/train.jpg" alt="Image 11">
+                    <figcaption>
+                        train.jpg
+                        <p class="description">red:(32, 87), green:(5, 42)</p>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="content">
+            <h2>Bells and Whistles</h2>
+            <p>In the results above, emir.jpg is not aligned properly. This is probably due to that the pixels on the same locations have very different intensity values on red, green and blue 
+            plates. A possible solution is to use the edge feature for alignment instead of pixel values. I used Canny Edge detection algorithm, and this fixed the misalignment
+            problem. In the results below, the left image does not use Canny Edge detection, whereas the image on the right uses Canny Edge detection. </p>
+        </div>
+        <div class="content">
+            <div class="image-grid">
+                <figure>
+                    <img src="media/emir.jpg" alt="example input">
+                    <figcaption>
+                        <p class="description">emir.jpg without Canny Edge detection</p>
+                    </figcaption>
+                </figure> 
+                <figure>
+                    <img src="media/emir_2.jpg" alt="example input">
+                    <figcaption>
+                        <p class="description">emir.jpg with Canny Edge detection</p>
+                    </figcaption>
+                </figure>              
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
