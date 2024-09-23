@@ -166,87 +166,46 @@
     </section>
     <section>
         <div class="content">
-            <h2>Results</h2>
+            <h2>2.1 Image Sharpening</h2>
             <p>
-                The results are shown as below with the displacement vectors (dx, dy) for the red and green plates. For these .tif images, the runtime of image pyramid algorithm
-                is in the range of 15-20s.
+                To sharpen an image, the image is convolved with a gaussian kernel, and the resulting image is denoted by img_blurred. 
+                Then, the details of the image is computed as details = image - img_blurred. Lastly, detail is added back to the image, and the result is
+                sharpened_image = image + alpha * details where alpha is a sharpening factor. Below is the before and after of the image "tal". 
             </p>
             <div class="image-grid">
                 <figure>
-                    <img src="media/church.jpg" alt="Image 1">
+                    <img src="media/tal.jpg" alt="Image 1">
                     <figcaption>
-                        church.jpg
-                        <p class="description">red:(-4, 59), green:(3, 25)</p>
+                        Before sharpening
                     </figcaption>
                 </figure>
                 <figure>
-                    <img src="media/emir.jpg" alt="Image 2">
+                    <img src="media/tal_sharpened.jpg" alt="Image 2">
                     <figcaption>
-                        emir.jpg
-                        <p class="description">red:(44, 36), green:(24, 49)</p>
+                        After sharpening
+                    </figcaption>
+                </figure>
+            </div>
+            <p>
+                I also tested another image "flower". I blurred the image and then sharpened it. The result is as below
+            </p>
+            <div class="image-grid">
+                <figure>
+                    <img src="media/flower.jpg" alt="Image 1">
+                    <figcaption>
+                        Original Image
                     </figcaption>
                 </figure>
                 <figure>
-                    <img src="media/harvesters.jpg" alt="Image 3">
+                    <img src="media/flower_blurred.jpg" alt="Image 1">
                     <figcaption>
-                        harvesters.jpg
-                        <p class="description">red:(13, 123), green:(16, 59)</p>
+                        Blurred Image
                     </figcaption>
                 </figure>
                 <figure>
-                    <img src="media/icon.jpg" alt="Image 4">
+                    <img src="media/flower_sharpened.jpg" alt="Image 2">
                     <figcaption>
-                        icon.jpg
-                        <p class="description">red:(23, 89), green:(17, 41)</p>
-                    </figcaption>
-                </figure>
-                <figure>
-                    <img src="media/lady.jpg" alt="Image 5">
-                    <figcaption>
-                        lady.jpg
-                        <p class="description">red:(11, 116), green:(8, 56)</p>
-                    </figcaption>
-                </figure>
-                <figure>
-                    <img src="media/melons.jpg" alt="Image 6">
-                    <figcaption>
-                        melons.jpg
-                        <p class="description">red:(12, 178), green:(9, 82)</p>
-                    </figcaption>
-                </figure>
-                <figure>
-                    <img src="media/onion_church.jpg" alt="Image 7">
-                    <figcaption>
-                        onion_church.jpg
-                        <p class="description">red:(36, 108), green:(26, 51)</p>
-                    </figcaption>
-                </figure>
-                <figure>
-                    <img src="media/sculpture.jpg" alt="Image 8">
-                    <figcaption>
-                        sculpture.jpg
-                        <p class="description">red:(-26, 139), green:(-11, 33)</p>
-                    </figcaption>
-                </figure>
-                <figure>
-                    <img src="media/self_portrait.jpg" alt="Image 9">
-                    <figcaption>
-                        self_portrait.jpg
-                        <p class="description">red:(36, 176), green:(29, 79)</p>
-                    </figcaption>
-                </figure>
-                <figure>
-                    <img src="media/three_generations.jpg" alt="Image 10">
-                    <figcaption>
-                        three_generations.jpg
-                        <p class="description">red:(10, 111), green:(13, 53)</p>
-                    </figcaption>
-                </figure>
-                <figure>
-                    <img src="media/train.jpg" alt="Image 11">
-                    <figcaption>
-                        train.jpg
-                        <p class="description">red:(32, 87), green:(5, 42)</p>
+                        Sharpening the Blurred Image
                     </figcaption>
                 </figure>
             </div>
