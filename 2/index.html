@@ -69,7 +69,7 @@
             <h2>1.1 Finite Difference Operator</h2>
             <p>
               First, the cameraman image is convolved with Dx = [[1, -1]] and Dy = [[1], [-1]] respectively. Then, combine the Dx and Dy images by using 
-              np.sqrt(dx_deriv ** 2 + dy_deriv ** 2). Finally, binarized the image by setting the pixel value to 1 if it's above the threshold and 0 otherwise. 
+              np.sqrt(dx_deriv ** 2 + dy_deriv ** 2), the result is called image gradient. Finally, binarized the image by setting the pixel value to 1 if it's above the threshold and 0 otherwise. 
               
             </p>
         </div>
@@ -79,26 +79,30 @@
             <h2>Results</h2>
             <div class="image-grid">
                 <figure>
-                    <img src="media/cathedral.jpg" alt="Image 1">
+                    <img src="media/dx.jpg" alt="Image 1">
                     <figcaption>
-                        cathedral.jpg
-                        <p class="description">red:(3, 12), green:(2, 5)</p>
+                        Dx
                     </figcaption>
                 </figure>
                 <figure>
-                    <img src="media/monastery.jpg" alt="Image 2">
+                    <img src="media/dy.jpg" alt="Image 2">
                     <figcaption>
-                        monastery.jpg
-                        <p class="description">red:(2, 3), green:(2, -3)</p>
+                        Dy
                     </figcaption>
                 </figure>
                 <figure>
-                    <img src="media/tobolsk.jpg" alt="Image 3">
+                    <img src="media/im_gradient.jpg" alt="Image 3">
                     <figcaption>
-                        tobolsk.jpg
-                        <p class="description">red:(3, 6), green:(3, 3)</p>
+                        Image Gradient
+                        <p class="description">combines Dx and Dy</p>
                     </figcaption>
-                </figure>               
+                </figure>   
+                <figure>
+                    <img src="media/im_gradient_binarized.jpg" alt="Image 3">
+                    <figcaption>
+                        Image Gradient Binarized
+                    </figcaption>
+                </figure> 
             </div>
         </div>
     </section>
