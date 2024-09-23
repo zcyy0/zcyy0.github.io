@@ -111,9 +111,8 @@
         <div class="content">
             <h2>2.2 Derivative of Gaussian (DoG) Filter </h2>
             <p>
-                First, apply the Gaussian filter to the image to get a blurred image. Then apply the same Dx, Dy, gradient computation and binarization
-                as in the previous section. The resulting edge image looks smoother and better
-                better than the ones in the previous section. 
+                Method 1: First, apply the Gaussian filter to the image to get a blurred image. Then apply the same Dx, Dy, gradient computation and binarization
+                as in the previous section. The resulting edge image looks smoother and better better than the ones in section 1.1. 
             </p>
              <div class="image-grid">
                 <figure>
@@ -139,6 +138,28 @@
                     <figcaption>
                         Image Blurred Gradient Binarized
                     </figcaption>
+                </figure> 
+            </div>
+            <p>
+                Method 2: Convolve Gaussian filter with Dx and Dy first, then apply the DoG (Derivative of Gaussian) to the original image.
+                After gradient computation and binarization, the result looks the same as the one in Method 1. 
+            </p>
+            <div class="image-grid">
+                <figure>
+                    <img src="media/DoG_grad_binarized.jpg" alt="Image 1">
+                    <figcaption>
+                        DoG Image Method 1
+                         <p class="description">Convolve Guassian filter with Dx and Dy, then apply
+                         the convolved filter onto the image </p>
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="media/img_gradient_binarized.jpg" alt="Image 3">
+                    <figcaption>
+                        DoG Image Method 2
+                    </figcaption>
+                    <p class="description">Apply the Gaussian filter to the image first, then convolve the filtered
+                    image with Dx and Dy respectively.</p>
                 </figure> 
             </div>
         </div>
