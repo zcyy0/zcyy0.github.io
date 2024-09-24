@@ -294,7 +294,10 @@
         <div class="content">
             <h2>2.3 Gaussian and Laplacian Stacks</h2>
             <p>
-                
+               The Gaussian stack is created by repeatedly applying Gaussian filter to the image. Suppose the number of levels in 
+                the Gaussian stack is N, then Laplacian stack is computed as
+                laplacian_stack[:,:, i] = gaussian_stack[:,:, i] - gaussian_stack[:, :, i+1] for 0 <= i <= N-2. At the last level N-1, 
+                laplacian_stack[:,:, i] = gaussian_stack[:,:, i]
             </p>
             <div class="image-grid">
                 <figure>
@@ -342,7 +345,11 @@
         <div class="content">
             <h2>2.4 Multiresolution Blending</h2>
             <p>
-                
+                First, for the two input images img_1 and img_2, generate two laplacian stacks denoted as img_1_laplacian_stack and 
+                img_2_laplacian_stack. Then select a mask g_mask, and create a gaussian stack of g_mask. The gaussian stack of the g_mask, 
+                denoted as g_mask_gaussian_stack has the same number of levels as the Laplacian stacks. The blended image is computed as 
+                blended_image[:,:, i] = img_1_laplacian_stack[:,:,i]* g_mask_gaussian_stack[:,:i] + img_2_laplacian_stack[:,:,i] * (1 - g_mask_gaussian_stack[:,:i])
+                For the apple and orange images, the blended image "oraple" is shown as the below
             </p>
             <div class="image-grid">
                 <figure>
