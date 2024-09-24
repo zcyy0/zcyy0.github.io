@@ -213,25 +213,34 @@
     </section>
     <section>
         <div class="content">
-            <h2>Bells and Whistles</h2>
-            <p>In the results above, emir.jpg is not aligned properly. This is probably due to that the pixels on the same locations have very different intensity values on red, green and blue 
-            plates. A possible solution is to use the edge feature for alignment instead of pixel values. I used Canny Edge detection algorithm, and this fixed the misalignment
-            problem. In the results below, the left image does not use Canny Edge detection, whereas the image on the right uses Canny Edge detection. </p>
+            <h2>2.2 Hybrid Images</h2>
+            <p>
+                I implemented hybrid image algorithm according to the assignment: For the first image, filter out high frequency with 
+                a Gaussian filter; for the second image, subtract the Gaussian-filtered image from the original. Then, add the filtered
+                first image and the filtered second image together to create the hybrid image. To test the algorithm, I used the 
+                images provided by the assignment
+            </p>
         </div>
         <div class="content">
             <div class="image-grid">
                 <figure>
-                    <img src="media/emir.jpg" alt="example input">
+                    <img src="media/Derek.jpg" alt="example input">
                     <figcaption>
-                        <p class="description">emir.jpg without Canny Edge detection</p>
+                        <p class="description"> Image 1</p>
                     </figcaption>
                 </figure> 
                 <figure>
-                    <img src="media/emir_2.jpg" alt="example input">
+                    <img src="media/cat.jpg" alt="example input">
                     <figcaption>
-                        <p class="description">emir.jpg with Canny Edge detection</p>
+                        <p class="description">Image 2</p>
                     </figcaption>
-                </figure>              
+                </figure> 
+                <figure>
+                    <img src="media/hybrid1.png" alt="example input">
+                    <figcaption>
+                        <p class="description">Hybrid Image</p>
+                    </figcaption>
+                </figure> 
             </div>
         </div>
     </section>
