@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CS180 Project 3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        p {
+            line-height: 2.0; /* Adjust the line spacing here */
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        section {
+            padding: 20px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 3 images per row */
+            gap: 20px; /* Space between images */
+        }
+        .image-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px; /* Add space between the images */
+        }
+        figure {
+            flex: 1;
+            text-align: center; /* Center the title below the image */
+        }
+        figcaption {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .description {
+            margin-top: 5px;
+            font-weight: normal;
+            color: #555; /* Style for description text */
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>CS180 Project 3: Face Morphing</h1>
+    </header>
+    <section>
+        <div class="content">
+            <h2>1. Defining Correspondence</h2>
+            <p>
+              I choose portraits of Kanye West and Taylor Swift as example images for morphing. 
+              <section>
+        <div class="content">
+            <h2>Results</h2>
+            <div class="image-grid">
+                <figure>
+                    <img src="media/dx.jpg" alt="Image 1">
+                    <figcaption>
+                        Dx
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="media/dy.jpg" alt="Image 2">
+                    <figcaption>
+                        Dy
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+              
+              I used the tool provided in the class to find the corresponding points. I selected
+              about 50 points. After that, I computed the average face points, and found 
+              
+            </p>
+        </div>
+    </section>
+    <section>
+        <div class="content">
+            <h2>Results</h2>
+            <div class="image-grid">
+                <figure>
+                    <img src="media/dx.jpg" alt="Image 1">
+                    <figcaption>
+                        Dx
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="media/dy.jpg" alt="Image 2">
+                    <figcaption>
+                        Dy
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="media/im_gradient.jpg" alt="Image 3">
+                    <figcaption>
+                        Image Gradient
+                        <p class="description">combines Dx and Dy</p>
+                    </figcaption>
+                </figure>   
+                <figure>
+                    <img src="media/img_gradient_binarized.jpg" alt="Image 3">
+                    <figcaption>
+                        Image Gradient Binarized
+                    </figcaption>
+                </figure> 
+            </div>
+        </div>
+    </section>
+    
+    <section>
+        <div class="content">
+            <h2>2.2 Derivative of Gaussian (DoG) Filter </h2>
+            <p>
+                Method 1: First, apply the Gaussian filter to the image to get a blurred image. Then apply the same Dx, Dy, gradient computation and binarization
+                as in the previous section. The resulting edge image looks smoother and better better than the ones in section 1.1. 
+            </p>
+             <div class="image-grid">
+                <figure>
+                    <img src="media/img_blurred_dx.jpg" alt="Image 1">
+                    <figcaption>
+                        Image Blurred Dx
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="media/img_blurred_dy.jpg" alt="Image 2">
+                    <figcaption>
+                        Image Blurred Dy
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="media/im_blurred_grad.jpg" alt="Image 3">
+                    <figcaption>
+                        Image Blurred Gradient
+                    </figcaption>
+                </figure>   
+                <figure>
+                    <img src="media/img_blurred_grad_binarized.jpg" alt="Image 3">
+                    <figcaption>
+                        Image Blurred Gradient Binarized
+                    </figcaption>
+                </figure> 
+            </div>
+            <p>
+                Method 2: Convolve Gaussian filter with Dx and Dy first, then apply the DoG (Derivative of Gaussian) to the original image.
+                After gradient computation and binarization, the result looks the same as the one in Method 1. 
+            </p>
+            <div class="image-grid">
+                <figure>
+                    <img src="media/DoG_grad_binarized.jpg" alt="Image 1">
+                    <figcaption>
+                        DoG Image Method 1
+                         <p class="description">Convolve Guassian filter with Dx and Dy, then apply
+                         the convolved filter onto the image </p>
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="media/img_blurred_grad_binarized.jpg" alt="Image 3">
+                    <figcaption>
+                        DoG Image Method 2
+                    </figcaption>
+                    <p class="description">Apply the Gaussian filter to the image first, then convolve the filtered
+                    image with Dx and Dy respectively.</p>
+                </figure> 
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="content">
+            <h2>2.1 Image Sharpening</h2>
+            <p>
+                To sharpen an image, the image is convolved with a gaussian kernel, and the resulting image is denoted by img_blurred. 
+                Then, the details of the image is computed as details = image - img_blurred. Lastly, detail is added back to the image, and the result is
+                sharpened_image = image + alpha * details where alpha is a sharpening factor. Below is the before and after of the image "tal". 
+            </p>
+            <div class="image-grid">
+                <figure>
+                    <img src="media/tal.jpg" alt="Image 1">
+                    <figcaption>
+                        Before sharpening
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="media/tal_sharpened.jpg" alt="Image 2">
+                    <figcaption>
+                        After sharpening
+                    </figcaption>
+                </figure>
+            </div>
+            <p>
+                I also tested another image "flower". I blurred the image and then sharpened it. The result is as below
+            </p>
+            <div class="image-grid">
+                <figure>
+                    <img src="media/flower.jpg" alt="Image 1">
+                    <figcaption>
+                        Original Image
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="media/flower_blurred.jpg" alt="Image 1">
+                    <figcaption>
+                        Blurred Image
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="media/flower_sharpened.jpg" alt="Image 2">
+                    <figcaption>
+                        Sharpening the Blurred Image
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="content">
+            <h2>2.2 Hybrid Images</h2>
+            <p>
+                I implemented hybrid image algorithm according to the assignment: For the first image, filter out high frequency with 
+                a Gaussian filter; for the second image, subtract the Gaussian-filtered image from the original. Then, add the filtered
+                first image and the filtered second image together to create the hybrid image. To test the algorithm, I used the 
+                images provided by the assignment
+            </p>
+            <div class="image-grid">
+                <figure>
+                    <img src="media/Derek.jpg" alt="example input">
+                    <figcaption>
+                        <p class="description"> Image 1</p>
+                    </figcaption>
+                </figure> 
+                <figure>
+                    <img src="media/cat.jpg" alt="example input">
+                    <figcaption>
+                        <p class="description">Image 2</p>
+                    </figcaption>
+                </figure> 
+                <figure>
+                    <img src="media/hybrid.jpg" alt="example input">
+                    <figcaption>
+                        <p class="description">Hybrid Image</p>
+                    </figcaption>
+                </figure> 
+            </div>
+             <p>
+                I also tested two other set of images. The first set is hybrid of Mona Lisa and a baby. This is considered success. 
+                 When you look close, Mona Lisa has big baby eyes. But when you look from far away, you see the original Mona Lisa. 
+            </p>
+            <div class="image-grid">
+                <figure>
+                    <img src="media/mona_lisa.jpg" alt="example input">
+                    <figcaption>
+                        <p class="description"> Mona Lisa </p>
+                    </figcaption>
+                </figure> 
+                <figure>
+                    <img src="media/baby.jpg" alt="example input">
+                    <figcaption>
+                        <p class="description">Baby </p>
+                    </figcaption>
+                </figure> 
+                <figure>
+                    <img src="media/mona_lisa_hybrid.jpg" alt="example input">
+                    <figcaption>
+                        <p class="description">Baby Mona Lisa</p>
+                    </figcaption>
+                </figure> 
+            </div>
+             <p>
+                The other set of images is a bread and a corgi. This is kinda a failure: when you look close, you can see a bread, but Corgi
+                 is also as obvious. I think this is because the graphic of a bread is too simple: it does not have many patterns
+                 or features. On the other hand, the Corgi image is higher frequency and has many details, especially the texture of its fur.
+            </p>
+            <div class="image-grid">
+                <figure>
+                    <img src="media/corgi.jpg" alt="example input">
+                    <figcaption>
+                        <p class="description"> A Corgi </p>
+                    </figcaption>
+                </figure> 
+                <figure>
+                    <img src="media/bread.jpg" alt="example input">
+                    <figcaption>
+                        <p class="description">A Bread </p>
+                    </figcaption>
+                </figure> 
+                <figure>
+                    <img src="media/corgi_hybrid.jpg" alt="example input">
+                    <figcaption>
+                        <p class="description">A Bread Corgi</p>
+                    </figcaption>
+                </figure> 
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="content">
+            <h2>2.3 Gaussian and Laplacian Stacks</h2>
+            <p>
+               The Gaussian stack is created by repeatedly applying Gaussian filter to the image. Suppose the number of levels in 
+                the Gaussian stack is N, then Laplacian stack is computed as
+                laplacian_stack[:,:, i] = gaussian_stack[:,:, i] - gaussian_stack[:, :, i+1] for 0 <= i <= N-2. At the last level N-1, 
+                laplacian_stack[:,:, i] = gaussian_stack[:,:, i]
+            </p>
+            <div class="image-grid">
+                <figure>
+                    <img src="media/apple.jpeg" alt="Image 1">
+                    <figcaption>
+                        apple
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="media/orange.jpeg" alt="Image 2">
+                    <figcaption>
+                        orange
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="image-grid">
+                <figure>
+                    <img src="media/gaussian_stack.jpg" alt="Image 1">
+                    <figcaption>
+                        Gaussian Stack
+                         <p class="description">showing levels from 0 to 5</p>
+                    </figcaption>
+                </figure>
+            </div>
+             <div class="image-grid">
+                <figure>
+                    <img src="media/laplacian_stack_1.jpg" alt="Image 1">
+                    <figcaption>
+                        Laplacian Stack of Apple
+                         <p class="description">showing levels from 0 to 5</p>
+                    </figcaption>
+                </figure>
+                  <figure>
+                    <img src="media/laplacian_stack_2.jpg" alt="Image 1">
+                    <figcaption>
+                        Laplacian Stack of Orange
+                         <p class="description">showing levels from 0 to 5</p>
+                    </figcaption>
+                </figure>
+            </div>    
+        </div>
+        
+    </section>
+    <section>
+        <div class="content">
+            <h2>2.4 Multiresolution Blending</h2>
+            <p>
+                First, for the two input images img_1 and img_2, generate two laplacian stacks denoted as img_1_laplacian_stack and 
+                img_2_laplacian_stack. Then select a mask g_mask, and create a gaussian stack of g_mask. The gaussian stack of the g_mask, 
+                denoted as g_mask_gaussian_stack has the same number of levels as the Laplacian stacks. The blended image is computed as 
+                blended_image[:,:, i] = img_1_laplacian_stack[:,:,i]* g_mask_gaussian_stack[:,:i] + img_2_laplacian_stack[:,:,i] * (1 - g_mask_gaussian_stack[:,:i])
+                For the apple and orange images, the blended image "oraple" is shown as the below
+            </p>
+            <div class="image-grid">
+                <figure>
+                    <img src="media/oraple.jpg" alt="Image 1">
+                    <figcaption>
+                        Oraple
+                    </figcaption>
+                </figure>
+            </div> 
+        </div>
+        
+    </section>
+
+</body>
+</html>
