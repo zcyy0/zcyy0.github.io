@@ -88,17 +88,57 @@
             </p>
             <div class="image-grid">
             <figure>
-                <img src="media/kanye_triangulation.jpg" alt="ye">
+                <img src="media/kanye_triangles.jpg" alt="ye">
                 <figcaption>
                     Kanye
                 </figcaption>
             </figure>
             <figure>
-                <img src="media/taylor_triangulation.jpg" alt="taylor">
+                <img src="media/taylor_triangles.jpg" alt="taylor">
                 <figcaption>
                     Taylor
                 </figcaption>
             </figure>
+        </div>
+    </section>
+
+    <section>
+        <div class="content">
+            <h2>2. Computing the Mid-Face</h2>
+            <p>
+              Let mid_triangles be the triangles in the mid face, im1_triangles be the triangles in the image1, and im2_triangles be the
+                triangles in the image2. (All these images use the same triangulation). Then, for each triangle i, compute the affine
+                transformation T_1i from image1 to the mid face, as well the affine transformation T_2i from image2 to the midface. Then T_1i^{-1}
+                is the inverse matrix of T_1i, and T_1i^{-1} is the inverse matrix of T_2i. Then, get all the points within the triangle i. Apply 
+                the inverse warping with T_1i^{-1} to these points and after looping through all triangles we get image1 warped to the midface; 
+                Similarly, apply the inverse warping with T_2i^{-1} we get image2 warped to the midface.
+                Note: I also used bilinear interpolation when the points in image1 or image2 are not integer coordinates. 
+            </p>
+            <div class="image-grid">
+                <figure>
+                    <img src="media/kanye_to_midface.jpg" alt="ye">
+                    <figcaption>
+                        Kanye warped to the mid face shape
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="media/taylor_to_midface.jpg" alt="taylor">
+                    <figcaption>
+                        Taylor warped to the mid face shape
+                    </figcaption>
+                </figure>
+            </div>
+            <p>
+                To get the cross-dissolved image of the mid face, I used the alpha = 0.5.
+            </p>
+            <div class="image-grid">
+                <figure>
+                    <img src="media/kanye_taylor_midface.jpg" alt="ye">
+                    <figcaption>
+                        The mid face between Kanye and Taylor
+                    </figcaption>
+                </figure>
+            </div>
         </div>
     </section>
               
